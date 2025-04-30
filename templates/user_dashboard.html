@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ role.capitalize() }} Dashboard | Student Information System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="d-flex">
+        <div class="sidebar bg-dark text-white p-4">
+            <h3 class="mb-4 text-center">{{ role.capitalize() }} Dashboard</h3>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="/dashboard" class="nav-link text-white">Dashboard</a>
+                </li>
+                {% if role == 'student' %}
+                <li class="nav-item">
+                    <a href="/grades" class="nav-link text-white">View Grades</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/export_grades_pdf" class="nav-link text-white">Download Grades</a>
+                </li>
+                {% endif %}
+                {% if role == 'teacher' %}
+                <li class="nav-item">
+                    <a href="/view_students" class="nav-link text-white">View Students</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/grades" class="nav-link text-white">Assign Grades</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="/logout" class="nav-link text-white">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="container-fluid p-4">
+            <h2 class="mb-4">Welcome, {{ role.capitalize() }}!</h2>
+
+            <div class="row">
+                {% if role == 'student' %}
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">View Your Grades</h5>
+                            <a href="/grades" class="btn btn-primary">View Grades</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Download Your Grades</h5>
+                            <a href="/export_grades_pdf" class="btn btn-primary">Download Grades</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if role == 'teacher' %}
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">View Your Students</h5>
+                            <a href="/view_students" class="btn btn-primary">View Students</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Assign Grades</h5>
+                            <a href="/grades" class="btn btn-primary">Assign Grades</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
